@@ -2,9 +2,9 @@
 
 > ### 문서 개요
 > - 작성 시작: 2026-07-31 15:00
-> - 최종 업데이트: 2026-07-31 15:00
+> - 최종 업데이트: 2026-07-31 18:00
 > - 핵심 내용 한줄 요약: 기획 완료 이후 개발 착수부터 Must have 완성까지의 8주 스프린트 일정 (계속 갱신됨)
-> - 관련 문서: [2026-07-31-sprint-planning.md](../01-planning/2026-07-31-sprint-planning.md)
+> - 관련 문서: [2026-07-31-sprint-planning.md](../01-planning/2026-07-31-sprint-planning.md), [2026-07-31-repo-branch-protection-setup.md](../04-collaboration/2026-07-31-repo-branch-protection-setup.md)
 
 <br/><br/>
 
@@ -28,7 +28,7 @@
 | 스프린트 | 기간 | 목표 | 상태 |
 |---|---|---|---|
 | Sprint 0 — 기획 | 07/26 ~ 07/30 (5일) | 기능 브레인스토밍/우선순위, 기술스택·아키텍처 결정, 브랜드 디자인, 협업 컨벤션, 인증 세부사항 확정 | 완료 |
-| Sprint 1 | 07/31 ~ 08/06 | 레포 세팅 (jote-frontend/backend/ai 생성, 브랜치, CI, 코드 컨벤션, 이슈/PR 템플릿·라벨) | 예정 |
+| Sprint 1 | 07/31 ~ 08/06 | 레포 세팅 (jote-frontend/backend/ai 생성, 브랜치, CI, 코드 컨벤션, 이슈/PR 템플릿·라벨) | 진행중 |
 | Sprint 2 | 08/07 ~ 08/13 | 인증 연동(Google/Kakao/Naver) + 메모 CRUD 기본 + 에디터(Tiptap) 붙이기 | 예정 |
 | Sprint 3 | 08/14 ~ 08/20 | 에디터 확장(체크리스트/코드블록) + 자동 저장 + Markdown export/import | 예정 |
 | Sprint 4 | 08/21 ~ 08/27 | 임베딩 파이프라인 + pgvector 연동 + 시맨틱 검색 | 예정 |
@@ -43,13 +43,13 @@
 
 | 일자 | 작업 |
 |---|---|
-| 07/31 | jote-frontend/backend/ai 3개 레포 생성 + main/develop 브랜치 + 브랜치 보호 규칙 + 기본 파일(README, .gitignore, .env.example) |
-| 08/01 | jote-frontend 스캐폴딩 (Next.js+TS, Tailwind, 폴더 구조, 절대경로 import, ESLint/Prettier) |
-| 08/02 | jote-backend 스캐폴딩 (NestJS 모듈/컨트롤러/서비스 구조, DTO 검증, 공통 응답/예외 처리, Swagger) |
-| 08/03 | jote-ai 스캐폴딩 (FastAPI 구조, Ruff/Black, Poetry/uv, Pydantic, OpenAPI) |
-| 08/04 | CI(GitHub Actions lint/build/test) 3개 레포 + Commit lint(commitlint+husky) + pre-commit(lint-staged) |
+| 07/31 | ✅ jote-frontend/backend/ai 3개 레포 생성, main/develop 브랜치, default 브랜치 develop 설정, 브랜치 보호 규칙(Ruleset `main-develop-protection`) 설정, README 추가 |
+| 08/01 | jote-frontend 스캐폴딩 (Next.js+TS, Tailwind, 폴더 구조, 절대경로 import, ESLint/Prettier). `.gitignore`는 CLI 자동 생성 |
+| 08/02 | jote-backend 스캐폴딩 (NestJS 모듈/컨트롤러/서비스 구조, DTO 검증, 공통 응답/예외 처리, Swagger). `.gitignore`는 CLI 자동 생성 |
+| 08/03 | jote-ai 스캐폴딩 (FastAPI 구조, Ruff/Black, Poetry/uv, Pydantic, OpenAPI). `.gitignore` 직접 추가 (공식 스캐폴딩 CLI 없음) |
+| 08/04 | CI(GitHub Actions lint/build/test) 3개 레포 + Commit lint(commitlint+husky) + pre-commit(lint-staged) + Require status checks 규칙 재설정 |
 | 08/05 | 이슈/PR 템플릿, 라벨 세팅 |
-| 08/06 | 환경변수/시크릿 관리 방식 정리 + 버퍼 |
+| 08/06 | 환경변수/시크릿 관리 방식 정리 + 각 레포 `.env.example` 채우기 + 버퍼 |
 
 <br/><br/>
 
@@ -125,4 +125,5 @@
 
 ## 수정 히스토리
 
+- 2026-07-31 18:00 — Sprint 1 Day 1 완료 반영, `.gitignore`/`.env.example`을 스캐폴딩 시점(08/01~08/06)으로 재배치
 - 2026-07-31 15:00 — 최초 작성 (Sprint 0~8 전체 일정 및 세부 일정 정리)
