@@ -2,9 +2,9 @@
 
 > ### 문서 개요
 > - 작성 시작: 2026-07-28 18:50
-> - 최종 업데이트: 2026-07-28 18:50
+> - 최종 업데이트: 2026-07-31 14:00
 > - 핵심 내용 한줄 요약: 서비스 기능, 기술 스택, 아키텍처에 대해 현재까지 확정된 사항만 모은 요약 문서 (계속 갱신됨)
-> - 관련 문서: [2026-07-27-feature-prioritization.md](../01-planning/2026-07-27-feature-prioritization.md), [2026-07-28-should-have-order.md](../01-planning/2026-07-28-should-have-order.md), [2026-07-28-tech-stack-selection.md](../03-architecture/2026-07-28-tech-stack-selection.md), [2026-07-28-embedding-provider-selection.md](../03-architecture/2026-07-28-embedding-provider-selection.md), [2026-07-28-architecture-decisions.md](../03-architecture/2026-07-28-architecture-decisions.md)
+> - 관련 문서: [2026-07-27-feature-prioritization.md](../01-planning/2026-07-27-feature-prioritization.md), [2026-07-28-should-have-order.md](../01-planning/2026-07-28-should-have-order.md), [2026-07-28-tech-stack-selection.md](../03-architecture/2026-07-28-tech-stack-selection.md), [2026-07-28-embedding-provider-selection.md](../03-architecture/2026-07-28-embedding-provider-selection.md), [2026-07-28-architecture-decisions.md](../03-architecture/2026-07-28-architecture-decisions.md), [2026-07-31-auth-provider-and-session-policy.md](../03-architecture/2026-07-31-auth-provider-and-session-policy.md)
 
 <br/><br/>
 
@@ -75,10 +75,14 @@ AI 서비스 (FastAPI)  ← 외부 비노출, 내부 호출만 신뢰
 <br/>
 
 ### 인증
-Supabase Auth로 로그인 처리(소셜 로그인 포함) + JWT 발급, NestJS는 JWT 검증 가드만 구현
+- Supabase Auth로 로그인 처리(소셜 로그인 포함) + JWT 발급, NestJS는 JWT 검증 가드만 구현
+- 소셜 로그인 Provider: Google + Kakao(기본 지원) + Naver(Custom OAuth2-only Provider로 등록). 안 되면 NestJS 직접 처리 + Supabase Admin API 브리지로 절충
+- 세션 만료 정책: Refresh token 절대 만료 30일 (활동 여부와 무관하게 30일 후 재로그인 필요)
 
 <br/><br/>
 
 ## 수정 히스토리
 
+- 2026-07-31 14:00 — 소셜 로그인 Provider 재검토: Naver도 Supabase Custom OAuth2 Provider로 MVP부터 지원하도록 변경
+- 2026-07-31 11:00 — 인증 Provider/세션 만료 정책 확정 사항 추가
 - 2026-07-28 18:50 — 최초 작성 (서비스 기능, 기술 스택, 아키텍처 확정 사항 정리)
