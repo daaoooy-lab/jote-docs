@@ -2,7 +2,7 @@
 
 > ### 문서 개요
 > - 작성 시작: 2026-07-30 22:54
-> - 최종 업데이트: 2026-07-31 11:00
+> - 최종 업데이트: 2026-07-31 18:00
 > - 핵심 내용 한줄 요약: jote-frontend/jote-backend/jote-ai 3개 레포에 적용할 브랜치 전략, 머지 방식, 릴리즈 태깅 방침을 정하고 남은 협업 준비 작업을 목록화
 > - 관련 문서: [2026-07-28-tech-stack-selection.md](../03-architecture/2026-07-28-tech-stack-selection.md)
 
@@ -60,14 +60,14 @@ develop에는 이미 squash로 정리된 커밋들이 쌓여있으므로, 여기
 <br/>
 
 ### 레포 공통 세팅 (jote-frontend / jote-backend / jote-ai)
-- [ ] 레포 생성 + `main`, `develop` 브랜치 세팅
-- [ ] 브랜치 보호 규칙 (main, develop 대상 PR 필수 등)
+- [x] 레포 생성 + `main`, `develop` 브랜치 세팅 (default 브랜치는 `develop`) → [2026-07-31-repo-branch-protection-setup.md](2026-07-31-repo-branch-protection-setup.md)
+- [x] 브랜치 보호 규칙 (Ruleset `main-develop-protection`으로 구성) → [2026-07-31-repo-branch-protection-setup.md](2026-07-31-repo-branch-protection-setup.md)
 - [ ] 이슈 템플릿 작성
 - [ ] PR 템플릿 작성
 - [ ] 이슈/PR 라벨 작업 (bug, feature, docs 등 기본 세트)
 - [ ] CI(GitHub Actions) — PR 시 lint/build/test 자동 실행
 - [ ] Commit lint 훅 — `commitlint` + `husky`로 커밋 형식 자동 검증
-- [ ] 기본 파일 — README, `.gitignore`, `.env.example`
+- [x] 기본 파일 — README (완료), `.gitignore`/`.env.example`은 각 스택 스캐폴딩 시점에 추가하기로 조정
 - [ ] 환경변수/시크릿 관리 방식 (배포 플랫폼별 등록 방식 정리)
 
 <br/>
@@ -82,5 +82,6 @@ develop에는 이미 squash로 정리된 커밋들이 쌓여있으므로, 여기
 
 ## 수정 히스토리
 
+- 2026-07-31 18:00 — 레포 생성/브랜치 보호 규칙/README 완료 체크, 관련 문서 링크 추가
 - 2026-07-31 11:00 — 인증 세부사항 결정 완료 체크
 - 2026-07-30 22:54 — 최초 작성 (브랜치 전략, 머지 방식, 릴리즈 태깅 결정 및 협업 준비 작업 목록 정리)
