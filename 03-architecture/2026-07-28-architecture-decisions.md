@@ -2,7 +2,7 @@
 
 > ### 문서 개요
 > - 작성 시작: 2026-07-28 18:45
-> - 최종 업데이트: 2026-07-28 18:45
+> - 최종 업데이트: 2026-07-31 11:00
 > - 핵심 내용 한줄 요약: 콘텐츠 저장 포맷, 서비스 간 통신 구조, 인증 전략 3가지 아키텍처 미결 사항을 결정
 > - 관련 문서: [2026-07-28-tech-stack-selection.md](2026-07-28-tech-stack-selection.md), [2026-07-28-embedding-provider-selection.md](2026-07-28-embedding-provider-selection.md)
 
@@ -95,10 +95,11 @@ NestJS ↔ FastAPI는 둘 다 내부 서비스라 별도 메시지 큐 없이 **
 
 ## 다음 단계
 
-- [ ] 인증 전략 세부 사항 추가 검토 (예: 소셜 로그인 Provider 종류, 세션 만료 정책 등)
+- [x] 인증 전략 세부 사항 추가 검토 (예: 소셜 로그인 Provider 종류, 세션 만료 정책 등) → [2026-07-31-auth-provider-and-session-policy.md](2026-07-31-auth-provider-and-session-policy.md)에서 확정
 
 <br/><br/>
 
 ## 수정 히스토리
 
+- 2026-07-31 11:00 — 인증 세부사항 결정 완료, 관련 문서 링크 추가
 - 2026-07-28 18:45 — 최초 작성
