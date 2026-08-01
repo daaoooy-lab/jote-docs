@@ -2,7 +2,7 @@
 
 > ### 문서 개요
 > - 작성 시작: 2026-07-30 22:54
-> - 최종 업데이트: 2026-07-31 18:00
+> - 최종 업데이트: 2026-08-01 13:41
 > - 핵심 내용 한줄 요약: jote-frontend/jote-backend/jote-ai 3개 레포에 적용할 브랜치 전략, 머지 방식, 릴리즈 태깅 방침을 정하고 남은 협업 준비 작업을 목록화
 > - 관련 문서: [2026-07-28-tech-stack-selection.md](../03-architecture/2026-07-28-tech-stack-selection.md)
 
@@ -64,7 +64,7 @@ develop에는 이미 squash로 정리된 커밋들이 쌓여있으므로, 여기
 - [x] 브랜치 보호 규칙 (Ruleset `main-develop-protection`으로 구성) → [2026-07-31-repo-branch-protection-setup.md](2026-07-31-repo-branch-protection-setup.md)
 - [ ] 이슈 템플릿 작성
 - [ ] PR 템플릿 작성
-- [ ] 이슈/PR 라벨 작업 (bug, feature, docs 등 기본 세트)
+- [ ] 이슈/PR 라벨 작업 (bug, feature, docs 등 기본 세트) — jote-frontend는 완료 (jote-backend/jote-ai/jote-docs/.github는 예정) → [2026-08-01-github-label-taxonomy.md](2026-08-01-github-label-taxonomy.md)
 - [ ] CI(GitHub Actions) — PR 시 lint/build/test 자동 실행
 - [ ] Commit lint 훅 — `commitlint` + `husky`로 커밋 형식 자동 검증
 - [x] 기본 파일 — README (완료), `.gitignore`/`.env.example`은 각 스택 스캐폴딩 시점에 추가하기로 조정
@@ -74,7 +74,7 @@ develop에는 이미 squash로 정리된 커밋들이 쌓여있으므로, 여기
 
 ### 트랙별 코드 컨벤션
 - [ ] 공통: pre-commit 훅(`lint-staged`), 테스트 프레임워크/커버리지 기준
-- [ ] jote-frontend: ESLint+Prettier(+Tailwind 정렬), 폴더 구조, 네이밍 규칙, API 통신 레이어, 절대경로 import
+- [ ] jote-frontend: ~~ESLint+Prettier(+Tailwind 정렬)~~, ~~폴더 구조~~, 네이밍 규칙, API 통신 레이어, ~~절대경로 import~~ — ESLint+Prettier는 [2026-08-01-prettier-setup.md](../05-frontend/2026-08-01-prettier-setup.md), 폴더 구조·절대경로 import는 [2026-08-01-fsd-folder-structure.md](../05-frontend/2026-08-01-fsd-folder-structure.md)에서 확정. 네이밍 규칙·API 통신 레이어는 예정
 - [ ] jote-backend: ESLint+Prettier, 모듈/컨트롤러/서비스 구조, DTO 검증, 공통 응답 포맷/예외 처리, Swagger 문서화
 - [ ] jote-ai: 린터/포매터(Ruff/Black), 프로젝트 구조, 의존성 관리 도구(Poetry vs uv), Pydantic 스키마 검증, OpenAPI 문서화
 
@@ -82,6 +82,7 @@ develop에는 이미 squash로 정리된 커밋들이 쌓여있으므로, 여기
 
 ## 수정 히스토리
 
+- 2026-08-01 13:41 — jote-frontend 트랙 컨벤션(ESLint+Prettier, 폴더 구조, 절대경로 import) 및 라벨 작업(jote-frontend) 완료 체크, 관련 문서 링크 추가
 - 2026-07-31 18:00 — 레포 생성/브랜치 보호 규칙/README 완료 체크, 관련 문서 링크 추가
 - 2026-07-31 11:00 — 인증 세부사항 결정 완료 체크
 - 2026-07-30 22:54 — 최초 작성 (브랜치 전략, 머지 방식, 릴리즈 태깅 결정 및 협업 준비 작업 목록 정리)
