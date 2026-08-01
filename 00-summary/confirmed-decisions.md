@@ -2,9 +2,10 @@
 
 > ### 문서 개요
 > - 작성 시작: 2026-07-28 18:50
-> - 최종 업데이트: 2026-07-31 14:00
-> - 핵심 내용 한줄 요약: 서비스 기능, 기술 스택, 아키텍처에 대해 현재까지 확정된 사항만 모은 요약 문서 (계속 갱신됨)
-> - 관련 문서: [2026-07-27-feature-prioritization.md](../01-planning/2026-07-27-feature-prioritization.md), [2026-07-28-should-have-order.md](../01-planning/2026-07-28-should-have-order.md), [2026-07-28-tech-stack-selection.md](../03-architecture/2026-07-28-tech-stack-selection.md), [2026-07-28-embedding-provider-selection.md](../03-architecture/2026-07-28-embedding-provider-selection.md), [2026-07-28-architecture-decisions.md](../03-architecture/2026-07-28-architecture-decisions.md), [2026-07-31-auth-provider-and-session-policy.md](../03-architecture/2026-07-31-auth-provider-and-session-policy.md)
+> - 최종 업데이트: 2026-08-01 13:24
+> - 핵심 내용 한줄 요약: 서비스 기능, 기술 스택, 아키텍처, 협업 컨벤션에 대해 현재까지 확정된 사항만 모은 요약 문서 (계속 갱신됨)
+> - 관련 문서: [2026-07-27-feature-prioritization.md](../01-planning/2026-07-27-feature-prioritization.md), [2026-07-28-should-have-order.md](../01-planning/2026-07-28-should-have-order.md), [2026-07-28-tech-stack-selection.md](../03-architecture/2026-07-28-tech-stack-selection.md), [2026-07-28-embedding-provider-selection.md](../03-architecture/2026-07-28-embedding-provider-selection.md), [2026-07-28-architecture-decisions.md](../03-architecture/2026-07-28-architecture-decisions.md), [2026-07-31-auth-provider-and-session-policy.md](../03-architecture/2026-07-31-auth-provider-and-session-policy.md), [2026-07-30-git-workflow-and-conventions.md](../04-collaboration/2026-07-30-git-workflow-and-conventions.md), [2026-08-01-branch-strategy-refinement.md](../04-collaboration/2026-08-01-branch-strategy-refinement.md), [2026-08-01-issue-branch-pr-workflow.md](../04-collaboration/2026-08-01-issue-branch-pr-workflow.md), [2026-08-01-commit-message-gitmoji.md](../04-collaboration/2026-08-01-commit-message-gitmoji.md), [2026-08-01-github-label-taxonomy.md](../04-collaboration/2026-08-01-github-label-taxonomy.md)
+> - jote-frontend 구현 관련 확정 사항은 [frontend-decisions.md](frontend-decisions.md) 별도 문서 참고
 
 <br/><br/>
 
@@ -81,8 +82,63 @@ AI 서비스 (FastAPI)  ← 외부 비노출, 내부 호출만 신뢰
 
 <br/><br/>
 
+## 협업 컨벤션
+
+### Git 브랜치 전략
+정석 Git Flow (`main` / `develop` / 작업 브랜치 / `release/*` / `hotfix/*`). **`jote-frontend`/`jote-backend`/`jote-ai` 3개 코드 레포에만 적용** — `jote-docs`(이 저장소)는 `main` 단일 브랜치만 쓰며 이슈/브랜치/PR 없이 바로 커밋한다.
+
+```
+main       ← 배포 가능한 안정 버전
+  ↑ (merge commit, release 시점에 태그 예: v0.1.0)   ↑ (hotfix/* 직접 merge)
+develop ──────────────────────────────────────────────┘
+  ↑ (squash merge)              ↓ (release/* 분기, 배포 준비 후 main+develop 양쪽 merge)
+feature/*, fix/*, refactor/*,
+style/*, chore/*, docs/*,
+test/*, perf/*  ← 개별 작업
+```
+
+- 작업 브랜치는 `feature/*`, `fix/*`, `refactor/*`, `style/*`, `chore/*`, `docs/*`, `test/*`, `perf/*` (Conventional Commits 타입과 동일 체계), `develop`에서 분기해 `develop`으로 squash merge
+- `release/*`는 `develop`에서 분기해 배포 준비, 완료 후 `main`+`develop` 양쪽 merge
+- `hotfix/*`는 `main`에서 분기해 긴급 수정, `main`+`develop` 양쪽 merge
+- `main`, `develop` 둘 다 브랜치 보호 규칙(Ruleset `main-develop-protection`) 적용, 직접 push 금지·PR로만 진행
+
+<br/>
+
+### 작업 진행 순서
+설정 작업이든 기능 작업이든 예외 없이 적용:
+
+1. 이슈 생성
+2. 브랜치 생성 — `develop`에서 분기, `<type>/<이슈번호>-<핵심키워드>` (예: `feature/12-editor-tiptap`, `chore/8-prettier-setup`)
+3. 작업 진행
+4. 커밋 및 푸시
+5. `develop`으로 PR 생성 (squash merge)
+
+`develop`에 직접 커밋/푸시하지 않는다. Repository admin bypass는 정말 급한 상황에만 사용.
+
+<br/>
+
+### 커밋 메시지 — Gitmoji
+형식: `<gitmoji> (#이슈번호) <type>: <Title>` (코드 3개 레포). `jote-docs`는 문서 저장소라 gitmoji·이슈번호 없이 `tag: Title`만 사용.
+
+| type | gitmoji | type | gitmoji |
+|---|---|---|---|
+| `feat` | ✨ | `test` | ✅ |
+| `fix` | 🐛 | `chore` | 🔧 |
+| `docs` | 📝 | `hotfix` | 🚑️ |
+| `refactor` | ♻️ | `release` | 🔖 |
+| `style` | 🎨 | `perf` | ⚡️ |
+
+예: `✨ (#12) feat: Add Tiptap editor`
+
+<br/><br/>
+
 ## 수정 히스토리
 
+- 2026-08-01 13:24 — jote-docs 커밋은 gitmoji도 붙이지 않는 것으로 정정 (문서 저장소라 깔끔하게)
+- 2026-08-01 13:20 — 협업 컨벤션에 커밋 메시지 Gitmoji 규칙 추가
+- 2026-08-01 12:52 — Git 브랜치 전략이 코드 3개 레포에만 적용됨을 명시 (jote-docs는 main 단일 브랜치)
+- 2026-08-01 12:49 — 협업 컨벤션에 작업 진행 순서(이슈→브랜치→PR) 추가
+- 2026-08-01 12:38 — 협업 컨벤션(Git 브랜치 전략) 섹션 추가: 작업 브랜치 prefix 다양화, release/hotfix 분기 전략 확정
 - 2026-07-31 14:00 — 소셜 로그인 Provider 재검토: Naver도 Supabase Custom OAuth2 Provider로 MVP부터 지원하도록 변경
 - 2026-07-31 11:00 — 인증 Provider/세션 만료 정책 확정 사항 추가
 - 2026-07-28 18:50 — 최초 작성 (서비스 기능, 기술 스택, 아키텍처 확정 사항 정리)
