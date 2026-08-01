@@ -4,6 +4,12 @@
 
 <br/><br/>
 
+## 브랜치 정책
+
+이 저장소는 `main` 단일 브랜치만 사용한다. `jote-frontend`/`jote-backend`/`jote-ai` 3개 코드 레포에 적용되는 Git Flow(이슈 생성 → 브랜치 생성 → PR, [2026-08-01-issue-branch-pr-workflow.md](04-collaboration/2026-08-01-issue-branch-pr-workflow.md))는 이 저장소에는 해당하지 않는다. 문서 변경은 이슈나 별도 브랜치 없이 `main`에 바로 커밋한다.
+
+<br/><br/>
+
 ## 폴더 구조
 
 - 대분류는 `01-`, `02-`, `03-` ... 순차 번호 접두사로 구분한다.
@@ -94,6 +100,7 @@
 
   Body
   ```
+  (`jote-frontend`/`jote-backend`/`jote-ai`의 커밋은 `<gitmoji> (#이슈번호) tag: Title` 형식을 쓰지만, jote-docs는 문서 저장소라 깔끔하게 gitmoji·이슈번호 없이 태그만 쓴다.)
 - 태그 (필요에 따라 추가):
   - `docs`: 문서 추가/수정
   - `chore`: 폴더 구조, 설정 등 관리성 작업
