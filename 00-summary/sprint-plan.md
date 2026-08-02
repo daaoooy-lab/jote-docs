@@ -2,7 +2,7 @@
 
 > ### 문서 개요
 > - 작성 시작: 2026-07-31 15:00
-> - 최종 업데이트: 2026-08-01 13:41
+> - 최종 업데이트: 2026-08-02 09:00
 > - 핵심 내용 한줄 요약: 기획 완료 이후 개발 착수부터 Must have 완성까지의 8주 스프린트 일정 (계속 갱신됨)
 > - 관련 문서: [2026-07-31-sprint-planning.md](../01-planning/2026-07-31-sprint-planning.md), [2026-07-31-repo-branch-protection-setup.md](../04-collaboration/2026-07-31-repo-branch-protection-setup.md)
 
@@ -45,11 +45,11 @@
 |---|---|
 | 07/31 | ✅ jote-frontend/backend/ai 3개 레포 생성, main/develop 브랜치, default 브랜치 develop 설정, 브랜치 보호 규칙(Ruleset `main-develop-protection`) 설정, README 추가 |
 | 08/01 | ✅ jote-frontend 스캐폴딩 (Next.js+TS, Tailwind, 폴더 구조는 Next.js 맞춤 Feature-Sliced Design, 절대경로 import, ESLint/Prettier). `.gitignore`는 CLI 자동 생성. 이슈/브랜치/PR 워크플로우, 커밋 Gitmoji 컨벤션 확정 및 jote-frontend 이슈 라벨 세팅도 조기 진행 |
-| 08/02 | jote-backend 스캐폴딩 (NestJS 모듈/컨트롤러/서비스 구조, DTO 검증, 공통 응답/예외 처리, Swagger). `.gitignore`는 CLI 자동 생성 |
-| 08/03 | jote-ai 스캐폴딩 (FastAPI 구조, Ruff/Black, Poetry/uv, Pydantic, OpenAPI). `.gitignore` 직접 추가 (공식 스캐폴딩 CLI 없음) |
+| 08/02 | (일정 변경으로 진행 안 함 — 08/03으로 이동) |
+| 08/03 | jote-backend 스캐폴딩 (NestJS 모듈/컨트롤러/서비스 구조, DTO 검증, 공통 응답/예외 처리, Swagger) + jote-ai 스캐폴딩 (FastAPI 구조, Ruff/Black, Poetry/uv, Pydantic, OpenAPI). `.gitignore`는 backend는 CLI 자동 생성, ai는 직접 추가 (공식 스캐폴딩 CLI 없음) |
 | 08/04 | CI(GitHub Actions lint/build/test) 3개 레포 + Commit lint(commitlint+husky) + pre-commit(lint-staged) + Require status checks 규칙 재설정 |
 | 08/05 | 이슈/PR 템플릿, 라벨 세팅 (jote-frontend는 08/01에 조기 완료 — jote-backend/jote-ai/jote-docs/.github만 남음) |
-| 08/06 | 환경변수/시크릿 관리 방식 정리 + 각 레포 `.env.example` 채우기 + 버퍼 |
+| 08/06 | 환경변수/시크릿 관리 방식 정리 + 각 레포 `.env.example` 채우기 (버퍼 없이 진행 — 08/02 작업 이관으로 버퍼 흡수) |
 
 <br/><br/>
 
@@ -125,6 +125,7 @@
 
 ## 수정 히스토리
 
+- 2026-08-02 09:00 — 개인 일정으로 08/02(jote-backend 스캐폴딩) 작업 미진행, 08/03(jote-ai 스캐폴딩)에 합쳐서 진행하도록 변경. 08/06 버퍼를 흡수해 이후 일정(08/04~08/06)은 그대로 유지
 - 2026-08-01 13:41 — Sprint 1 Day 2(08/01) 완료 반영, 라벨 세팅 조기 진행 사항 08/05에 메모
 - 2026-07-31 18:00 — Sprint 1 Day 1 완료 반영, `.gitignore`/`.env.example`을 스캐폴딩 시점(08/01~08/06)으로 재배치
 - 2026-07-31 15:00 — 최초 작성 (Sprint 0~8 전체 일정 및 세부 일정 정리)
